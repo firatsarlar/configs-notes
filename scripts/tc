@@ -1,0 +1,3 @@
+#! /bin/bash
+XXlc=$(cat /var/tmp/dnsbl-1.uceprotect.net)
+echo ${XXlc}

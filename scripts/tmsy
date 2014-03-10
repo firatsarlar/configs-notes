@@ -1,0 +1,13 @@
+#! /bin/bash 
+sync_after=36000
+
+last=$(date -r $1 '+%s')
+curr=$(date '+%s')
+
+diffr=$[$curr - $last]
+
+if [ $diffr -gt $sync_after ]; then
+	echo "1aaa"
+else
+	echo "aaa"
+fi

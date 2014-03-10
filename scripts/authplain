@@ -1,0 +1,7 @@
+#/usr/bin/bash
+#cr=$(echo -ne "\00$1\00$2" | openssl base64)
+cr2=$( printf '\0%s\0%s' "$1" "$2" | openssl base64)
+#echo $cr
+#echo "AUTH PLAIN $cr"
+echo "AUTH PLAIN $cr2"
+

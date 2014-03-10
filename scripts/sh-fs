@@ -1,0 +1,5 @@
+#/usr/bin/bash
+user=$3 || "firatto"
+server=$1 || "$user@192.168.1.104"
+mount=$2 || "/mnt/vm-ubi12.10"
+sshfs $(server):/ $mount -o sftp_server="/usr/bin/sudo /usr/lib/sftp-server" -o auto_unmount 

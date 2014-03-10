@@ -1,0 +1,33 @@
+#! /bin/bash 
+target="rsync-mirrors.uceprotect.net::RBLDNSD-ALL/dnsbl-1.uceprotect.net" 
+filename=$(basename ${target}) 
+firewall_ipset="${filename%.*}"           # ipset will be filename minus ext 
+data_dir="/var/tmp"   # data directory will be same 
+data_file="${data_dir}/${filename}" 
+
+rsync -azv ${target} ${data_file}
+if [ "$?" -ne "0" ]; then 
+    logger -p cron.err "IPSet: ${firewall_ipset} rsync failed." 
+    exit 1 
+fi 
+
+ipcount=$(wc -l  $data_file | grep -Po "[0-9]* ")
+ipset_params="hash:ip hashsize 262144 maxelem ${ipcount}"
+
+temp_ipset="${firewall_ipset}_temp" 
+
+echo "create ${temp_ipset} ${ipset_params}" > "${data_file}.sv"
+sed -rn "s/(^([0-9]{1,3}\.){3}[0-9]{1,3}).*$/add ${temp_ipset} \1/p" ${data_file} >> "${data_file}.sv"
+
+ipset restore < "${data_file}.sv"
+
+ipset create -exist ${firewall_ipset} ${ipset_params}
+
+# swap the temp ipset for the live one 
+ipset swap ${temp_ipset} ${firewall_ipset} 
+ipset destroy ${temp_ipset} 
+
+# log the file modification time for use in minimizing lag in cron schedule 
+logger -p cron.notice "IPSet: ${firewall_ipset} updated (as of: ${timestamp})." 
+
+rm "${data_file}.sv"

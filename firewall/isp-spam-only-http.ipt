@@ -1,0 +1,164 @@
+79.189.206.120/29
+
+69.15.0.0/16
+
+98.160.0.0/11
+
+173.200.0.0/16
+
+24.96.212.0/24
+
+75.149.0.0/12
+
+59.112.0.0/12
+
+75.144.0.0/13
+
+90.184.0.0/17
+
+68.152.0.0/13
+
+64.65.0.0/18
+69.24.64.0/19
+190.143.128/18
+
+41.13.0.0/19
+
+187.64.0.0/14
+
+108.171.240.0/20
+
+113.160.96.0/19
+
+113.162.64.0/19
+
+186.69.0.0/16
+
+68.44.0.0/15
+
+190.136.176/21
+
+# Road Runner HoldCo LLC  US  Co
+24.106.128.0/17
+
+# Cox Communications Inc  US  ISP
+24.234.0.0/16
+
+# Kabel BW GmbH           DE  ISP
+37.209.0.0/17
+
+# TFN MEDIA CO            TW  Co.
+49.158.0.0/17
+
+# FRONTIER-COM            US  ISP
+50.32.0.0/12
+50.48.0.0/13
+50.120.0.0/13
+
+
+# Comcast Cable           US  ISP
+50.128.0.0/9
+69.136.0.0/13
+70.90.64.0/21
+173.160.0.0/13
+
+# UNWIRED-BROADBAND       US  ISP
+64.203.112.0/20
+
+# tw telecom              US  Co.ISP
+66.192.0.0/14
+
+# Verizon US  ISP
+71.181.128.0/17
+71.184.0.0/13
+71.182.0.0/15
+
+# BellSouth               US  ISP
+74.160.0.0/11
+
+# MAGELLAN TRAVELLER      US  Co.
+74.11.126.240/29
+
+# Lyse Tele Corporate     NO  Co.
+79.161.3.0/22
+
+# JAZZTEL                 ES  ISP
+87.216.0.0/15
+
+# APNIC                   AU  ?
+165.228.0.0/15
+
+# DONet Inc.              US  Co.
+64.56.96.0/19
+
+# DIGITAL-PATH-NETWORKS   US ?
+208.53.64.0/19
+
+# FASTWEB                 IT  Co.
+93.63.6.0/24
+
+# ISP Road Runner HoldCo      US  Co.
+24.39.0.0/16
+74.64.0.0/12
+
+
+# 94.76.65.0/24 FREENET AS31148 UA
+94.76.65.0/24
+
+#  HINET-NET Chunghwa Telecom Co.,Ltd   TW 
+111.240.0.0/12
+114.32.0.0/12
+61.216.0.0/13
+61.224.0.0/13
+168.95.0.0/16
+218.160.0.0/12
+1.160.0.0/12
+36.224.0.0/12
+
+# portugal cable ssl attk
+81.84.192.0/18
+
+# jap isp
+49.212.0.0/16
+
+# CN China Unicom Shandong Province Network ISP
+119.176.0.0/12
+
+#China Telecom FUJIAN PROVINCE NETWORK
+120.40.0.0/14
+
+# China Tel.
+113.136.0.0/13
+121.8.0.0/13
+123.112.0.0/12
+175.45.0.0/18
+218.186.0.0/16
+# 110.6.0.0 - 110.7.255.255
+110.6.0.0/15
+
+# RU NCNET Broadband customers ISP
+46.242.0.0/17
+
+# MX ISP Mega Cable
+187.240.0.0/13
+
+# Belarus Telekom
+178.120.0.0/15
+
+# MT-ONNETADSL MK ( Makedonya )
+79.125.192.0/18
+
+# Telepac II - Comunicacoes Interactivas, SA PT ( Portugal )
+85.240.0.0/13
+
+# Telefonica del Peru 
+#190.237.128.0 - 190.237.255.255
+#190.42.0.0 - 192.43.255.255
+190.237.128.0/17
+190.42.0.0/15
+
+# inetnum:        37.212.0.0 - 37.215.255.255
+# netname:        BY-BELPAK-20120330
+# descr:          Republican Unitary Telecommunication Enterprise Beltelecom
+# country:        BY
+37.212.0.0/14

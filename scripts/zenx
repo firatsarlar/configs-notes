@@ -1,0 +1,3 @@
+#/usr/bin/bash
+dig +short $(rev-ip $1).zen.spamhaus.org
+dig +short $(rev-ip $1).b.barracudacentral.org

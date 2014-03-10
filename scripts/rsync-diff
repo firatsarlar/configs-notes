@@ -1,0 +1,9 @@
+#! /bin/bash 
+
+data_file=$1
+target=$2
+
+cp ${data_file} "${data_file}.o"
+rsync -azv ${target} ${data_file}
+
+diff "${data_file}.o" $data_file

@@ -1,0 +1,71 @@
+== Rationale ==
+
+This page describes how to make fail2ban monitor really persistent attackers. When an IP gets blocked multiple times, Fail2ban notices this and gives the IP a ban for an extra long time. The trick used for this is that you set up a new jail that monitors the Fail2ban log file itself. Actually I wrote this to stop Fail2ban sending me notification e-mails about a really persistent dictionary attacker that wasn't discouraged by fail2ban, triggering my ''ssh'' jail multiple times in an hour.
+
+== Step 1: create a new filter ==
+
+First you need a filter that knows the fail2ban logfile format. Create a new filter definition: '''/etc/fail2ban/filter.d/fail2ban.conf'''
+ # Fail2Ban configuration file
+ #
+ # Author: Tom Hendrikx
+ #
+ # $Revision$
+ #
+ 
+ [Definition]
+ 
+ # Option:  failregex
+ # Notes.:  regex to match the password failures messages in the logfile. The
+ #          host must be matched by a group named "host". The tag "<HOST>" can
+ #          be used for standard IP/hostname matching and is only an alias for
+ #          (?:::f{4,6}:)?(?P<host>\S+)
+ # Values:  TEXT
+ #
+ 
+ # Count all bans in the logfile
+ failregex = fail2ban.actions: WARNING \[(.*)\] Ban <HOST>
+ 
+ # Option:  ignoreregex
+ # Notes.:  regex to ignore. If this regex matches, the line is ignored.
+ # Values:  TEXT
+ #
+ 
+ # Ignore our own bans, to keep our counts exact.
+ # In your config, name your jail 'fail2ban', or change this line!
+ ignoreregex = fail2ban.actions: WARNING \[fail2ban\] Ban <HOST>
+
+
+== Step 2: define the jail ==
+
+Now create a new jail in '''/etc/fail2ban/jail.conf''':
+
+ [fail2ban]
+ enabled = true
+ filter = fail2ban
+ action = iptables-allports[name=fail2ban]
+         sendmail-whois[name=fail2ban]
+ logpath = /var/log/fail2ban.log
+ # findtime: 1 week
+ findtime = 604800
+ # bantime: 1 week
+ bantime = 604800
+
+As you can see I raised ''bantime'' to a much longer value than the default 600 seconds, thus blocking the attacker for a very long time. Since the attacker has had his chance a few times by now (by default 3 times on any defined jail, who each trigger after a default of 3 failed attempts), the chance of blocking a valid but mistaken user for such a long period is pretty small.
+
+== Warning: pick the right jail ==
+
+This jail does not work with actions who record an IP only once (i.e. block only an IP address, and do not keep track of the jail that trigger the block). For example:
+* When an attacker gets blocked for an SSH attempt for the third time, the ''ssh'' jail kicks in and blocks the IP for the defined bantime (default: 10 minutes).
+* A few seconds later the ''fail2ban'' jail also kicks in, and blocks the IP again, for a much longer period. Since the IP is already on the blocklist and the blocklist itself does not know about different jails, it still has the IP once recorded (or maybe twice, but cannot differ between the two).
+* After 10 minutes, the ''ssh'' jail removes the IP from the blocklist. The blocklist does not know about the intention of the ''fail2ban'' jail, and just deletes the IP.
+* The IP is now gone from the blocklist, despite our intention to block it for a longer period.
+
+This happens with the following blocking actions: '''ipfw''', '''hostsdeny''', '''shorewall'''.
+
+Currently, this means that: 
+* you need to use the various '''iptables''' actions when blocking, since they use a blocklist on a per-jail basis, given that you define a separate ''name=foo'' argument for each jail. 
+* you need to use a different blocking action for this jail. Personally, I use '''shorewall''' for all 'regular' jails, and '''iptables-allports''' for the ''fail2ban'' jail. Combining any two blocking actions would work though.
+
+[[Category:Software]]
+
+from : http://whyscream.net/wiki/index.php?title=Fail2ban_monitoring_Fail2ban
