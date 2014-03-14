@@ -1,3 +1,7 @@
+
+
+
+```conf
 //
 // Do any local configuration here
 //
@@ -42,3 +46,4 @@ recursive-clients 500;
 
   auth-nxdomain yes;    # conform to RFC1035
 };
+```
