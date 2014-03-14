@@ -1,7 +1,6 @@
 
 
-
-```conf
+```nginx
 //
 // Do any local configuration here
 //
