@@ -35,6 +35,8 @@ export CFLAGS="-Os -s";./configure \
 --without-http_uwsgi_module \
 --without-http_browser_module \
 --without-http_geo_module \
+--without-http_limit_req_module \
+--without-http_limit_zone_module \
 --add-module=/home/firatto/_compile/nginx/nginx-1.5.12/src/3th-party/echo-nginx-module-0.51 \
 ~~~
 
