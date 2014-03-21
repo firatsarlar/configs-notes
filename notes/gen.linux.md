@@ -40,8 +40,8 @@ Host *
  ControlMaster auto
  ControlPath /tmp/%r@%h:%p
 Host goo
-    Hostname go-ex.net
+    Hostname goxex.net
     User firatto
     IdentityFile ~/.ssh/id_rsa
-    Port 10322
+    Port 22
 ```
