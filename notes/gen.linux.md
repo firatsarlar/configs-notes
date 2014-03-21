@@ -31,3 +31,17 @@ temporarly allow ping
 ```
 iptables -I INPUT -p icmp -j ACCEPT
 ```
+
+```
+Host *
+ #ServerAliveInterval 240
+ ServerAliveCountMax 3
+ ServerAliveInterval 110
+ ControlMaster auto
+ ControlPath /tmp/%r@%h:%p
+Host goo
+    Hostname go-ex.net
+    User firatto
+    IdentityFile ~/.ssh/id_rsa
+    Port 10322
+```
