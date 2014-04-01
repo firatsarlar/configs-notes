@@ -23,8 +23,13 @@ rsync -az --stats --human-readable -e "ssh {configured.ssh host}" --rsync-path="
 
 log parse test :
 
-`cat /var/log/sys*g | grep "iptables denied" | sed  -r "s/^(.*\:[0-9]+).*kernel.*SRC\=(([0-9]+\.){3}[0-9]+).*/\1 \2  ---xx /"`
+`
+cat /var/log/sys*g | grep "iptables denied" | sed  -r "s/^(.*\:[0-9]+).*kernel.*SRC\=(([0-9]+\.){3}[0-9]+).*/\1 \2  ---xx /"
+`
 
+ubuntu zsnc :
+
+`zsync http://tr.cdimage.ubuntu.com/ubuntu-server/daily/current/trusty-server-amd64.iso.zsync -o {target-dir}/trusty-server-amd64.iso`
 
 temporarly allow ping
 
@@ -41,7 +46,7 @@ Host *
  ControlPath /tmp/%r@%h:%p
 Host goo
     Hostname goxex.net
-    User firatto
+    User firattoc
     IdentityFile ~/.ssh/id_rsa
     Port 22
 ```
