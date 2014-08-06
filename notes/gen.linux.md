@@ -50,3 +50,8 @@ Host goo
     IdentityFile ~/.ssh/id_rsa
     Port 22
 ```
+
+
+to see full hostname terminal prompt
+ 
+ ` export PS1="\[\u@$(hostname -f): \w\]# "
