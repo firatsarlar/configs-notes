@@ -54,4 +54,8 @@ Host goo
 
 to see full hostname terminal prompt
  
- ` export PS1="\[\u@$(hostname -f): \w\]# "
+`export PS1="\[\u@$(hostname -f): \w\]# "
+
+postfix log spam filtered 
+
+`cat /var/log/mail.log | grep "zen" | sed -r 's/^(.*\:[0-9]+).*\[(.*)\].* from\=<(.*)> to\=<(.*\..*)> proto.*$/\1 \2 \3 \4/`
