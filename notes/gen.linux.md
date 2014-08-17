@@ -59,3 +59,8 @@ to see full hostname terminal prompt
 postfix log spam filtered 
 
 `cat /var/log/mail.log | grep "zen" | sed -r 's/^(.*\:[0-9]+).*\[(.*)\].* from\=<(.*)> to\=<(.*\..*)> proto.*$/\1 \2 \3 \4/`
+
+
+dovecot pw
+
+´doveadm pw -s SHA512-CRYPT´
