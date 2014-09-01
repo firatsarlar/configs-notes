@@ -64,3 +64,7 @@ postfix log spam filtered
 dovecot pw
 
 ´doveadm pw -s SHA512-CRYPT´
+
+´sudo adduser LOGIN_ID www-data
+sudo chmod g+rwX -R /var/www
+
